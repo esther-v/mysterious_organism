@@ -32,7 +32,7 @@ const pAequorFactory = (num, dnaArray) => {
           this.dna.splice(randomBase, 1, 'G')
           break;
         case 'G':
-          this.dna.splice(randomBase, 1, '1')
+          this.dna.splice(randomBase, 1, 'A')
           break;
       }
       return this.dna
@@ -71,6 +71,29 @@ while (survivingOrganisms.length < 30) {
   idCounter++
 }
 console.log(survivingOrganisms)
+
+
+//generate species
+function generateSpecimens(survivingOrganisms) {
+
+  const container = document.querySelector(".container-specimens")
+  let output = ''
+  survivingOrganisms.forEach((specimen) => {
+    output += `
+      <div class="specimen">
+       
+        <h2 class="article-titre">Specimen n°${specimen.specimenNum}</h2>
+        <p class="dna">Its sequence of DNA is : ${specimen.dna}</p>
+        <p class="dna mutation">Its DNA could mutate to : ${specimen.mutate()}</p>
+     
+      </div>
+    `
+  })
+  container.innerHTML = output
+  
+}
+generateSpecimens(survivingOrganisms)
+
 
 
 
