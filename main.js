@@ -19,11 +19,8 @@ const pAequorFactory = (num, dnaArray) => {
     specimenNum: num,
     dna: dnaArray,
     mutate: function(){
-      let randomBase = Math.floor(Math.random() * this.dna.length)
-      console.log(randomBase)
+      const randomBase = Math.floor(Math.random() * this.dna.length)
       let baseToMutate = this.dna[randomBase]
-      console.log(baseToMutate)
-      console.log(this.dna)
       switch(baseToMutate) {
         case 'A':
           this.dna.splice(randomBase, 1, 'T')
@@ -39,7 +36,18 @@ const pAequorFactory = (num, dnaArray) => {
           break;
       }
       return this.dna
-    } 
+    }, 
+    compareDNA: function(otherOrganism){
+      const identicalBases = this.dna.reduce((acc, current, index, arr) => {
+        if (arr[index] === otherOrganism.dna[index]){
+          return acc + 1
+        } else {
+          return acc
+        }
+      }, 0)
+      const percentageSimilarities = Math.round((identicalBases / this.dna.length) * 100)
+      console.log(`The 2 organisms have ${percentageSimilarities}% of common DNA`)
+    }
   }
 }
 
