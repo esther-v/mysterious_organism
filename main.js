@@ -47,13 +47,19 @@ const pAequorFactory = (num, dnaArray) => {
       }, 0)
       const percentageSimilarities = Math.round((identicalBases / this.dna.length) * 100)
       console.log(`The 2 organisms have ${percentageSimilarities}% of common DNA`)
+    },
+    willLikelySurvive: function(){
+      const baseC_baseG = this.dna.filter(base => base === "C" || base ==="G")
+      const percentageSurvival = Math.round((baseC_baseG.length / this.dna.length) * 100)
+      return percentageSurvival >= 60
     }
   }
 }
 
 const organism = pAequorFactory(1, mockUpStrand())
+const organism2 = pAequorFactory(2, mockUpStrand())
 //console.log(organism.dna)
-console.log(organism.mutate())
+console.log(organism.willLikelySurvive())
 
 
 
