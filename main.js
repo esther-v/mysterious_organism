@@ -58,9 +58,19 @@ const pAequorFactory = (num, dnaArray) => {
 
 const organism = pAequorFactory(1, mockUpStrand())
 const organism2 = pAequorFactory(2, mockUpStrand())
-//console.log(organism.dna)
-console.log(organism.willLikelySurvive())
 
+//Create 30 instances of pAequor and store them in an array only if they are likely to survive
+const survivingOrganisms = []
+let idCounter = 1
+
+while (survivingOrganisms.length < 30) {
+  let newSpecimen = pAequorFactory(idCounter, mockUpStrand())
+  if (newSpecimen.willLikelySurvive()) {
+    survivingOrganisms.push(newSpecimen)
+  }
+  idCounter++
+}
+console.log(survivingOrganisms)
 
 
 
